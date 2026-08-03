@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyper-V to OCI Migration Guide | Djectory</title>
+    <meta name="description" content="Step-by-step guide on backing up a Hyper-V VM, converting it to VMDK format, and deploying it as a custom image in Oracle Cloud Infrastructure (OCI).">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">D</div>
+            <div class="logo-text">
+                <h2>DJECTORY</h2>
+                <span>Infrastructure Simplified</span>
+            </div>
+        </div>
+        <ul>
+            <li><a href="../index.html#projects">← Back to Projects</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="article-container">
+    
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-meta">
+            <span class="tech-tag">Hyper-V</span>
+            <span class="tech-tag">OCI</span>
+            <span class="tech-tag">VMDK</span>
+            <span class="tech-tag">Migration</span>
+            <span class="article-date">📅 July 2026</span>
+        </div>
+        <h1>Migrating Hyper-V VMs to Oracle Cloud Infrastructure (OCI)</h1>
+        <p class="article-subtitle">A practical 2-day workflow: Hyper-V backup, VMDK disk image conversion, OCI Object Storage upload, and custom image deployment.</p>
+    </header>
+
+    <!-- Project Overview Metrics -->
+    <section class="project-summary-box">
+        <div class="summary-item">
+            <h4>Objective</h4>
+            <p>On-Premises Hyper-V to OCI Cloud Migration</p>
+        </div>
+        <div class="summary-item">
+            <h4>Source Format</h4>
+            <p>Hyper-V VHDX / Backup</p>
+        </div>
+        <div class="summary-item">
+            <h4>Target Format</h4>
+            <p>VMDK / OCI Custom Image</p>
+        </div>
+        <div class="summary-item">
+            <h4>Environment</h4>
+            <p>Production / Cloud Hybrid</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <article class="article-body">
+
+        <h2>📌 Overview</h2>
+        <p>
+            Migrating on-premises workloads to the cloud requires an efficient, repeatable strategy. In this hands-on project, we took an existing <strong>Hyper-V Virtual Machine</strong>, exported/backed up its virtual disks, converted the storage format into <strong>VMDK</strong>, uploaded it to <strong>OCI Object Storage</strong>, and provisioned a running cloud instance from it.
+        </p>
+
+        <hr>
+
+        <h2>🚀 Phase 1: Hyper-V Backup & Disk Export</h2>
+        <p>Before modifying or converting disk images, the first rule of infrastructure engineering is securing a clean restore point.</p>
+        
+        <ul class="step-list">
+            <li><strong>Step 1.1: Shut Down Workload safely:</strong> Ensure the source Hyper-V VM is cleanly powered off to avoid filesystem inconsistency or corrupt database states.</li>
+            <li><strong>Step 1.2: Export VHDX:</strong> Export the target VM disk image (<code>.vhdx</code> file) from Hyper-V Manager to a dedicated staging directory.</li>
+        </ul>
+
+        <!-- Picture Placeholder -->
+        <div class="image-placeholder">
+            <img src="../assets/images/hyperv-export.png" alt="Hyper-V VM Export Process" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+1:+Hyper-V+Export+Screenshot'">
+            <p class="caption">Figure 1: Exporting the source VHDX disk from Hyper-V Manager.</p>
+        </div>
+
+        <hr>
+
+        <h2>🔄 Phase 2: Converting VHDX to VMDK Format</h2>
+        <p>Oracle Cloud Infrastructure supports importing custom disk images in <strong>VMDK</strong> or <strong>QCOW2</strong> formats. We converted the <code>.vhdx</code> file using <code>qemu-img</code> (or V2V Converter).</p>
+
+        <div class="code-block">
+            <div class="code-header">Terminal / Shell Command</div>
+            <pre><code># Converting VHDX image to VMDK format using qemu-img
+qemu-img convert -f vhdx -O vmdk source_disk.vhdx converted_disk.vmdk -p</code></pre>
+        </div>
+
+        <ul class="step-list">
+            <li><strong>Check Integrity:</strong> Verify the converted <code>.vmdk</code> disk size and headers before uploading.</li>
+        </ul>
+
+        <!-- Picture Placeholder -->
+        <div class="image-placeholder">
+            <img src="../assets/images/vmdk-conversion.png" alt="Disk conversion terminal output" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+2:+Disk+Conversion+Terminal+Output'">
+            <p class="caption">Figure 2: Converting disk formats and verifying image structure.</p>
+        </div>
+
+        <hr>
+
+        <h2>☁️ Phase 3: Uploading to OCI Object Storage</h2>
+        <p>With the VMDK prepared, the image is staged inside an OCI Object Storage Bucket using the OCI CLI or OCI Console.</p>
+
+        <ul class="step-list">
+            <li><strong>Step 3.1: Create OCI Bucket:</strong> Set up a private Object Storage bucket in your target region.</li>
+            <li><strong>Step 3.2: Upload Disk Image:</strong> Transfer the converted <code>converted_disk.vmdk</code> file into the bucket.</li>
+        </ul>
+
+        <div class="code-block">
+            <div class="code-header">OCI CLI Upload Command</div>
+            <pre><code># Uploading VMDK to OCI Object Storage Bucket
+oci os object put -bn migration-bucket --name converted_disk.vmdk --file converted_disk.vmdk --progress</code></pre>
+        </div>
+
+        <!-- Picture Placeholder -->
+        <div class="image-placeholder">
+            <img src="../assets/images/oci-bucket.png" alt="OCI Object Storage Bucket Upload" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+3:+OCI+Object+Storage+Upload'">
+            <p class="caption">Figure 3: Staging the VMDK image inside OCI Object Storage.</p>
+        </div>
+
+        <hr>
+
+        <h2>🖥️ Phase 4: Import Custom Image & Provision VM</h2>
+        <p>The final step is registering the uploaded object as an OCI Custom Image and launching a live compute instance.</p>
+
+        <ul class="step-list">
+            <li><strong>Import Custom Image:</strong> In the OCI Console, navigate to <em>Compute → Custom Images → Import Image</em>. Select the VMDK object from your bucket and set the operating system mode (Emulated / Paravirtualized).</li>
+            <li><strong>Launch Compute Instance:</strong> Once the image state reaches <code>AVAILABLE</code>, click <strong>Create Instance</strong>, configure networking (VCN / Subnet), select shape, and launch.</li>
+            <li><strong>Verify Connectivity:</strong> Test SSH/RDP access to ensure bootloader and drivers loaded smoothly.</li>
+        </ul>
+
+        <!-- Picture Placeholder -->
+        <div class="image-placeholder">
+            <img src="../assets/images/oci-instance-running.png" alt="OCI Instance Running" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+4:+OCI+Instance+Up+%26+Running'">
+            <p class="caption">Figure 4: Successfully deployed OCI compute instance running from custom VMDK.</p>
+        </div>
+
+        <hr>
+
+        <h2>💡 Key Takeaways & Lessons Learned</h2>
+        <div class="takeaways-box">
+            <ul>
+                <li>✔ <strong>Paravirtualized Drivers:</strong> Ensure network and storage drivers are compatible before importing to avoid boot loops.</li>
+                <li>✔ <strong>Network Configuration:</strong> Remember to update static IP settings from the source network to DHCP or OCI VCN IP ranges.</li>
+                <li>✔ <strong>Cleanup:</strong> Delete temporary VMDK files from local staging and OCI buckets after successful deployment to avoid extra storage costs.</li>
+            </ul>
+        </div>
+
+    </article>
+
+</main>
+
+<footer>
+    <div class="copyright">
+        © 2026 Djectory. Built with ❤️ by Dj.
+    </div>
+</footer>
+
+</body>
+</html>
