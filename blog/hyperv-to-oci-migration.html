@@ -21,11 +21,11 @@
             <div class="logo-icon">D</div>
             <div class="logo-text">
                 <h2>DJECTORY</h2>
-                <span>Infrastructure Simplified</span>
+                <span>Full-Stack Infrastructure</span>
             </div>
         </div>
         <ul>
-            <li><a href="../index.html#projects">← Back to Projects</a></li>
+            <li><a href="../index.html#knowledge">← Back to articles</a></li>
         </ul>
     </nav>
 </header>
@@ -83,12 +83,6 @@
             <li><strong>Step 1.2: Export VHDX:</strong> Export the target VM disk image (<code>.vhdx</code> file) from Hyper-V Manager to a dedicated staging directory.</li>
         </ul>
 
-        <!-- Picture Placeholder -->
-        <div class="image-placeholder">
-            <img src="../assets/images/hyperv-export.png" alt="Hyper-V VM Export Process" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+1:+Hyper-V+Export+Screenshot'">
-            <p class="caption">Figure 1: Exporting the source VHDX disk from Hyper-V Manager.</p>
-        </div>
-
         <hr>
 
         <h2>🔄 Phase 2: Converting VHDX to VMDK Format</h2>
@@ -103,12 +97,6 @@ qemu-img convert -f vhdx -O vmdk source_disk.vhdx converted_disk.vmdk -p</code><
         <ul class="step-list">
             <li><strong>Check Integrity:</strong> Verify the converted <code>.vmdk</code> disk size and headers before uploading.</li>
         </ul>
-
-        <!-- Picture Placeholder -->
-        <div class="image-placeholder">
-            <img src="../assets/images/vmdk-conversion.png" alt="Disk conversion terminal output" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+2:+Disk+Conversion+Terminal+Output'">
-            <p class="caption">Figure 2: Converting disk formats and verifying image structure.</p>
-        </div>
 
         <hr>
 
@@ -126,12 +114,6 @@ qemu-img convert -f vhdx -O vmdk source_disk.vhdx converted_disk.vmdk -p</code><
 oci os object put -bn migration-bucket --name converted_disk.vmdk --file converted_disk.vmdk --progress</code></pre>
         </div>
 
-        <!-- Picture Placeholder -->
-        <div class="image-placeholder">
-            <img src="../assets/images/oci-bucket.png" alt="OCI Object Storage Bucket Upload" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+3:+OCI+Object+Storage+Upload'">
-            <p class="caption">Figure 3: Staging the VMDK image inside OCI Object Storage.</p>
-        </div>
-
         <hr>
 
         <h2>🖥️ Phase 4: Import Custom Image & Provision VM</h2>
@@ -142,12 +124,6 @@ oci os object put -bn migration-bucket --name converted_disk.vmdk --file convert
             <li><strong>Launch Compute Instance:</strong> Once the image state reaches <code>AVAILABLE</code>, click <strong>Create Instance</strong>, configure networking (VCN / Subnet), select shape, and launch.</li>
             <li><strong>Verify Connectivity:</strong> Test SSH/RDP access to ensure bootloader and drivers loaded smoothly.</li>
         </ul>
-
-        <!-- Picture Placeholder -->
-        <div class="image-placeholder">
-            <img src="../assets/images/oci-instance-running.png" alt="OCI Instance Running" onerror="this.src='https://via.placeholder.com/800x400/0f172a/2ef2ff?text=Step+4:+OCI+Instance+Up+%26+Running'">
-            <p class="caption">Figure 4: Successfully deployed OCI compute instance running from custom VMDK.</p>
-        </div>
 
         <hr>
 
@@ -166,7 +142,7 @@ oci os object put -bn migration-bucket --name converted_disk.vmdk --file convert
 
 <footer>
     <div class="copyright">
-        © 2026 Djectory. Built with ❤️ by Dj.
+        © 2026 Djectory. Built by Djectory.
     </div>
 </footer>
 
