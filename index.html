@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/home-extras.css">
 </head>
 
 <body>
@@ -46,6 +47,7 @@
 <li><a href="#about">About</a></li>
 <li><a href="#skills">Skills</a></li>
 <li><a href="#knowledge">Knowledge</a></li>
+<li><a href="#start-project">Start a Project</a></li>
 <li><a href="#contact">Contact</a></li>
 
 </ul>
@@ -94,25 +96,51 @@ Explore Articles
 
 </a>
 
-<a href="#contact" class="btn-secondary">
-
-Contact Me
-
-</a>
+<a href="#start-project" class="btn-secondary">Start a Project</a>
 
 </div>
 
-<div class="tech-stack">
-
-<span>Linux</span>
-<span>VMware</span>
-<span>Oracle Cloud</span>
-<span>Oracle Database</span>
-<span>Oracle EBS</span>
-<span>Storage</span>
-<span>Veeam</span>
-<span>Ansible</span>
-
+<div class="stack-map">
+<svg viewBox="0 0 560 300" role="img" aria-label="Djectory platform connected to Linux, VMware, storage, backup, Oracle and OCI">
+  <defs>
+    <filter id="sg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="links" stroke="rgba(46,242,255,0.35)" stroke-width="1.5" fill="none">
+    <line x1="280" y1="150" x2="100" y2="60"/>
+    <line x1="280" y1="150" x2="280" y2="40"/>
+    <line x1="280" y1="150" x2="460" y2="60"/>
+    <line x1="280" y1="150" x2="100" y2="240"/>
+    <line x1="280" y1="150" x2="280" y2="260"/>
+    <line x1="280" y1="150" x2="460" y2="240"/>
+  </g>
+  <g fill="#2ef2ff" filter="url(#sg)">
+    <circle r="3"><animateMotion dur="2.4s" repeatCount="indefinite" path="M280 150 L100 60"/></circle>
+    <circle r="3"><animateMotion dur="2.0s" repeatCount="indefinite" path="M280 150 L280 40"/></circle>
+    <circle r="3" fill="#ff2ee0"><animateMotion dur="2.6s" repeatCount="indefinite" path="M280 150 L460 60"/></circle>
+    <circle r="3" fill="#ff2ee0"><animateMotion dur="2.2s" repeatCount="indefinite" path="M280 150 L100 240"/></circle>
+    <circle r="3" fill="#ffb92e"><animateMotion dur="2.5s" repeatCount="indefinite" path="M280 150 L280 260"/></circle>
+    <circle r="3" fill="#ffb92e"><animateMotion dur="2.3s" repeatCount="indefinite" path="M280 150 L460 240"/></circle>
+  </g>
+  <circle cx="280" cy="150" r="40" fill="#0d131f" stroke="#2ef2ff" stroke-width="2" filter="url(#sg)"/>
+  <text x="280" y="156" text-anchor="middle" fill="#eafcff" font-family="Orbitron, sans-serif" font-size="18" font-weight="700">DJ</text>
+  <g font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" fill="#d9e6ef">
+    <rect x="25" y="40" width="150" height="40" rx="8" fill="#0d131f" stroke="#2ef2ff" stroke-width="1.2"/>
+    <text x="100" y="65">Linux</text>
+    <rect x="205" y="20" width="150" height="40" rx="8" fill="#0d131f" stroke="#2ef2ff" stroke-width="1.2"/>
+    <text x="280" y="45">VMware</text>
+    <rect x="385" y="40" width="150" height="40" rx="8" fill="#0d131f" stroke="#ff2ee0" stroke-width="1.2"/>
+    <text x="460" y="65">Storage (SAN/HPE)</text>
+    <rect x="25" y="220" width="150" height="40" rx="8" fill="#0d131f" stroke="#ff2ee0" stroke-width="1.2"/>
+    <text x="100" y="245">Backup (Veeam)</text>
+    <rect x="205" y="240" width="150" height="40" rx="8" fill="#0d131f" stroke="#ffb92e" stroke-width="1.2"/>
+    <text x="280" y="265">Oracle DB / EBS</text>
+    <rect x="385" y="220" width="150" height="40" rx="8" fill="#0d131f" stroke="#ffb92e" stroke-width="1.2"/>
+    <text x="460" y="245">OCI Cloud</text>
+  </g>
+</svg>
 </div>
 
 </div>
@@ -415,7 +443,6 @@ Technologies I work with daily.
 </div>
 
 </section>
-</section>
 
 <section id="services" class="section">
 
@@ -627,6 +654,81 @@ Read Article →
 
 </section>
 
+<section id="how-we-work" class="section">
+<div class="section-title">
+<h2>How We Work</h2>
+<p>Every project follows the same four steps, so you always know what happens next.</p>
+</div>
+<div class="process-grid">
+  <div class="process-step"><span class="step-num">01</span><h3>Describe</h3><p>Tell us your environment, what is going wrong or what you are planning, and your timeline.</p></div>
+  <div class="process-step"><span class="step-num">02</span><h3>Scope</h3><p>I review the details, ask any follow-up questions, and send a fixed-scope proposal before any work starts.</p></div>
+  <div class="process-step"><span class="step-num">03</span><h3>Fix</h3><p>Work is done in agreed stages, with a written update after each one so nothing is a surprise.</p></div>
+  <div class="process-step"><span class="step-num">04</span><h3>Handover</h3><p>You receive documentation and a short walkthrough so your team can run and maintain the result.</p></div>
+</div>
+</section>
+
+<section id="start-project" class="section">
+<div class="section-title">
+<h2>Start a Project</h2>
+<p>Pick the closest project type. If yours is not listed, choose "Other" and describe it.</p>
+</div>
+
+<form class="project-form" action="https://formspree.io/f/xoejbnbd" method="POST">
+  <input type="hidden" name="_subject" value="New project request from djectory.com">
+  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+  <div class="form-row">
+    <label>Name *
+      <input type="text" name="name" required>
+    </label>
+    <label>Email *
+      <input type="email" name="email" required>
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>Company (optional)
+      <input type="text" name="company">
+    </label>
+    <label>Timeline
+      <select name="timeline">
+        <option value="Flexible">Flexible / not sure</option>
+        <option value="Within 2 weeks">Within 2 weeks</option>
+        <option value="1 to 2 months">1 to 2 months</option>
+        <option value="3+ months">3+ months</option>
+      </select>
+    </label>
+  </div>
+
+  <label class="full">Project type *
+    <select name="project_type" id="projectType" required>
+      <option value="">Choose one</option>
+      <option>VMware health check</option>
+      <option>VMware cluster setup (HA / DRS)</option>
+      <option>Veeam backup deployment and testing</option>
+      <option>Zerto disaster recovery setup</option>
+      <option>SAN / HPE storage configuration</option>
+      <option>Linux server support and hardening</option>
+      <option>Proxmox setup or migration from VMware</option>
+      <option>Hyper-V to OCI migration</option>
+      <option>OCI cloud setup or migration</option>
+      <option>Oracle Database administration (10g to 19c)</option>
+      <option>Oracle EBS cloning and patching (11i / 12.2)</option>
+      <option>Ansible automation</option>
+      <option value="Other">Other (I will describe it below)</option>
+    </select>
+  </label>
+
+  <div id="otherBox" class="other-box" hidden>
+    <label class="full">Describe your project *
+      <textarea name="details" id="details" rows="5" placeholder="Your environment, what you need, and any deadline."></textarea>
+    </label>
+  </div>
+
+  <button type="submit" class="form-submit">Send project request</button>
+</form>
+</section>
+
 <section id="contact" class="section contact-section">
 
 <div class="section-title">
@@ -736,5 +838,16 @@ Built with ❤️ by Djectory.
 
 <script src="assets/js/app.js"></script>
 
+<script>
+const projectType = document.getElementById('projectType');
+const otherBox = document.getElementById('otherBox');
+const details = document.getElementById('details');
+projectType.addEventListener('change', () => {
+  const isOther = projectType.value === 'Other';
+  otherBox.hidden = !isOther;
+  details.required = isOther;
+  if (!isOther) details.value = '';
+});
+</script>
 </body>
 </html>
