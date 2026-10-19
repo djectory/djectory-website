@@ -1,0 +1,67 @@
+/* =========================================
+   DJECTORY — avatar-motion.css
+   Motion for the homepage photo.
+   Place at: assets/css/avatar-motion.css
+========================================= */
+
+/* Frame: floats gently, and tilts toward the cursor */
+.avatar-frame{
+  position:relative;
+  isolation:isolate;
+  perspective:900px;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .25s ease-out;
+  animation:avatarFloat 6s ease-in-out infinite, avatarPulse 3.5s ease-in-out infinite;
+}
+@keyframes avatarFloat{
+  0%,100%{ translate:0 0; }
+  50%{ translate:0 -10px; }
+}
+
+/* Rotating colour ring behind the photo */
+.avatar-frame::before{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border-radius:50%;
+  background:conic-gradient(from 0deg,#00e5ff,#ff2ee0,#ffb92e,#00e5ff);
+  filter:blur(14px);
+  opacity:.55;
+  z-index:-1;
+  animation:ringSpin 6s linear infinite;
+}
+@keyframes ringSpin{
+  to{ transform:rotate(360deg); }
+}
+
+/* Scan line moving across the photo */
+.avatar-frame-inner{
+  position:relative;
+  overflow:hidden;
+}
+.avatar-frame-inner::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-40%;
+  height:40%;
+  background:linear-gradient(180deg,transparent,rgba(0,255,255,.22),transparent);
+  pointer-events:none;
+  animation:scanDown 3.2s ease-in-out infinite;
+}
+@keyframes scanDown{
+  0%{ top:-40%; }
+  100%{ top:110%; }
+}
+
+/* Reduced motion: keep the photo still */
+@media (prefers-reduced-motion: reduce){
+  .avatar-frame,
+  .avatar-frame::before,
+  .avatar-frame-inner::after{
+    animation:none !important;
+    transition:none !important;
+  }
+  .avatar-frame{ transform:none; }
+}

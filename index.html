@@ -15,6 +15,8 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/home-extras.css">
+    <link rel="stylesheet" href="assets/css/home-motion.css">
+    <link rel="stylesheet" href="assets/css/avatar-motion.css">
 </head>
 
 <body>
@@ -87,6 +89,8 @@ Hi, I'm the engineer behind <strong>Djectory</strong>.
 I build secure, full-stack infrastructure across Linux, VMware, Oracle Cloud, Oracle Database, Oracle EBS Applications, storage solutions and automation for enterprise workloads.
 
 </p>
+
+<div class="typing-line"><span class="prompt">$</span><span id="roles"></span><span class="type-cursor"></span></div>
 
 <div class="hero-buttons">
 
@@ -849,5 +853,7 @@ projectType.addEventListener('change', () => {
   if (!isOther) details.value = '';
 });
 </script>
+<script src="assets/js/home-motion.js"></script>
+<script src="assets/js/avatar-motion.js"></script>
 </body>
 </html>

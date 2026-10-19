@@ -1,0 +1,161 @@
+/* =========================================
+   DJECTORY — home-motion.css
+   Animation layer. Place at: assets/css/home-motion.css
+========================================= */
+
+/* ---------- Hero: shifting gradient headline ---------- */
+.hero h1{
+  background-size:200% auto;
+  animation:headlineShift 8s linear infinite;
+}
+@keyframes headlineShift{
+  to{ background-position:200% center; }
+}
+
+/* ---------- Hero: typing line (cycles through your skills) ---------- */
+.typing-line{
+  font-family:'JetBrains Mono',monospace;
+  color:#00ffff;
+  font-size:18px;
+  margin:-10px 0 34px;
+  min-height:28px;
+  position:relative;
+  z-index:1;
+}
+.typing-line .prompt{
+  color:#ff2ee0;
+  margin-right:8px;
+}
+.type-cursor{
+  display:inline-block;
+  width:10px;
+  height:20px;
+  margin-left:4px;
+  vertical-align:middle;
+  background:#00ffff;
+  box-shadow:0 0 10px #00ffff;
+  animation:blinkCursor 1s steps(1) infinite;
+}
+@keyframes blinkCursor{
+  50%{ opacity:0; }
+}
+
+/* ---------- Hero: spotlight that follows the cursor ---------- */
+.hero{
+  position:relative;
+  isolation:isolate;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,40%), rgba(0,255,255,.13), transparent 70%);
+}
+.hero > *{
+  position:relative;
+  z-index:1;
+}
+
+/* ---------- Section titles: underline draws in on scroll ---------- */
+.section-title h2{
+  position:relative;
+  display:inline-block;
+}
+.section-title h2::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-14px;
+  width:0;
+  height:3px;
+  transform:translateX(-50%);
+  border-radius:3px;
+  background:linear-gradient(90deg,#00ffff,#ff2ee0);
+  box-shadow:0 0 12px rgba(0,255,255,.6);
+  transition:width .9s cubic-bezier(.2,.7,.2,1);
+}
+.section-title.in-view h2::after{
+  width:120px;
+}
+
+/* ---------- Staggered reveal for How We Work steps ---------- */
+.process-step{
+  transition:opacity .7s ease, transform .35s ease, border-color .35s, box-shadow .35s;
+}
+.js .process-step:not(.in-view){
+  opacity:0;
+  transform:translateY(30px);
+}
+.process-step.in-view{
+  opacity:1;
+  transform:none;
+}
+.process-step.in-view:hover{
+  transform:translateY(-8px);
+}
+
+/* ---------- Buttons: shine sweep on hover ---------- */
+.btn-primary,
+.btn-secondary,
+.hire-btn,
+.form-submit{
+  position:relative;
+  overflow:hidden;
+}
+.btn-primary::after,
+.btn-secondary::after,
+.hire-btn::after,
+.form-submit::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-75%;
+  width:50%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);
+  transition:left .7s ease;
+  pointer-events:none;
+}
+.btn-primary:hover::after,
+.btn-secondary:hover::after,
+.hire-btn:hover::after,
+.form-submit:hover::after{
+  left:125%;
+}
+
+/* ---------- Service cards: light sweep on hover ---------- */
+.service-category{
+  position:relative;
+  overflow:hidden;
+}
+.service-category::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-100%;
+  height:100%;
+  background:linear-gradient(180deg,transparent,rgba(0,255,255,.09),transparent);
+  transition:top .8s ease;
+  pointer-events:none;
+}
+.service-category:hover::before{
+  top:100%;
+}
+
+/* ---------- Respect reduced-motion settings ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none !important;
+    transition:none !important;
+  }
+  .js .process-step:not(.in-view){
+    opacity:1;
+    transform:none;
+  }
+}
